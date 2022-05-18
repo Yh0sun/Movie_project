@@ -1,0 +1,61 @@
+.banner {
+  color: rgb(255, 254, 254);
+  object-fit: contain;
+  height: 600px;
+  width: 100%;
+  margin-top: 2%;
+}
+
+.banner__contents {
+  margin-left: 30px;
+  padding-top: 300px;
+  height: 190px;
+}
+
+.banner__title {
+  font-size: 1.9rem;
+  font-weight: 800;
+  padding-bottom: 0.5rem;
+}
+
+.banner__description {
+  width: 45rem;
+  line-height: 1.5;
+  padding-top: 1rem;
+  font-size: 0.9rem;
+  max-width: 500px;
+  height: 80px;
+}
+
+.banner__button {
+  cursor: pointer;
+  color: #fff;
+  outline: none;
+  border: none;
+  font-weight: 700;
+  border-radius: 0.2vw;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background-color: rgba(51, 51, 51, 0.5);
+}
+
+/*button 색 전환 트랜지션 */
+.banner__button:hover {
+  color: #000;
+  background-color: #e6e6e6;
+  transition: all 0.2s;
+}
+
+/*아래쪽 살짝 fade 주는 기능 */
+.banner__fadeBottom {
+  height: 18.8rem;
+  background-image: linear-gradient(
+    180deg,
+    transparent,
+    rgba(31, 29, 29, 0.61),
+    #111
+  );
+}

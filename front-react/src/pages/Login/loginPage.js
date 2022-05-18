@@ -4,6 +4,7 @@ import SignUp from "../SignUp/signUpPage";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { GoogleLogin } from "react-google-login";
 
 const LoginPage = () => {
   let navigate = useNavigate();
@@ -17,6 +18,7 @@ const LoginPage = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
+    // 우리는 이메일과 pw만 필요하다
     const user = {
       email: inputEmail,
       password: inputPw,
@@ -24,14 +26,15 @@ const LoginPage = () => {
 
     // REST API에 POST, email과 pw가 동일하다면 Access token을 localStorage에 저장.
     axios
-      .post("http://127.0.0.1:8000/accounts/login/", user)
+      .post(`${process.env.REACT_APP_APIURL}/accounts/login/`, user)
       .then((res) => {
-
         if (res.data.access_token) {
           localStorage.clear();
           localStorage.setItem("token", res.data.access_token);
-          console.log(res.data.access_token);
-          navigate('/mainpage')
+          localStorage.setItem("refresh_token", res.data.refresh_token);
+          localStorage.setItem("user", JSON.stringify(res.data.user.email));
+          localStorage.setItem("pk", JSON.stringify(res.data.user.pk));
+          navigate("/mainpage");
         } else {
           setInputEmail("");
           setInputPw("");
@@ -39,20 +42,23 @@ const LoginPage = () => {
         }
       })
       .catch((err) => {
-        alert("아이디 또는 비밀번호가 일치하지 않습니다");
+        alert("아이디 또는 비밀번호가 일치하지 않거나 없는 아이디 입니다.");
         setInputEmail("");
         setInputPw("");
       });
   };
 
+  // 입력한 이메일값
   const handleInputEmail = (e) => {
     setInputEmail(e.target.value);
   };
 
+  // 입력한 패스워드값
   const handleInputPw = (e) => {
     setInputPw(e.target.value);
   };
 
+  //입력 초기화
   useEffect(() => {
     setFade("end");
     setBgFade("bg-end");
@@ -62,6 +68,7 @@ const LoginPage = () => {
     };
   }, []);
 
+  //login_button
   useEffect(() => {
     if (check) {
       setButtonState("able-button");
@@ -78,7 +85,7 @@ const LoginPage = () => {
       </Routes>
       <div className={"login-bg bg-start " + bgFade}>
         <div className="logo-box">
-          <img className="logo" src="img/넷플릭스.png" />
+          <img className="logo" src="img/Navlogo.png" />
         </div>
         <div className="box"></div>
         <div className="login-body">
