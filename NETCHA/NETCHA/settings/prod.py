@@ -10,8 +10,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'movie_app', # DB명
-        'USER': 'movie', # 데이터베이스 계정
-        'PASSWORD':'movie', # 계정 비밀번호
+        'USER': 'movieapp', # 데이터베이스 계정
+        'PASSWORD':'movieapp', # 계정 비밀번호
         'HOST':'mysql-svc', # 데이테베이스 IP
         # 'HOST':'localhost', # 데이테베이스 IP
         'PORT':'3306', # 데이터베이스 port
